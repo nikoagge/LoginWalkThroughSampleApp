@@ -27,12 +27,12 @@ class HomeController: UIViewController {
         return cv
     }()
     
-    let pageControl: UIPageControl = {
+    lazy var pageControl: UIPageControl = {
         
         let pc = UIPageControl()
         pc.pageIndicatorTintColor = .lightGray
         pc.currentPageIndicatorTintColor = UIColor.rgb(ofRed: 247, ofGreen: 154, ofBlue: 27)
-        pc.numberOfPages = 3
+        pc.numberOfPages = self.pages.count + 1
         pc.translatesAutoresizingMaskIntoConstraints = false
         
         return pc
@@ -60,6 +60,8 @@ class HomeController: UIViewController {
     
     let cellIdentifier = "cellId"
     
+    let loginCellIdentifier = "loginCellId"
+    
     let pages: [PageModel] = {
         
         let homePage = PageModel(title: "Share a great book", message: "Feel free to send the books you want to the people you want. Every recipient's first book is free.", imageName: "page1")
@@ -70,6 +72,9 @@ class HomeController: UIViewController {
         return [homePage, infoAboutSendingFromLibraryOptionPage, infoAboutSendingFromPlayerOptionPage]
     }()
     
+    var pageControlBottomAnchor: NSLayoutConstraint?
+    var skipButtonTopAnchor: NSLayoutConstraint?
+    var nextButtonTopAnchor: NSLayoutConstraint?
     
     override func viewDidLoad() {
         
@@ -85,6 +90,7 @@ class HomeController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(PageCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: loginCellIdentifier)
         //In order to every cell has its own page, and not to have two cells in one page:
         collectionView.isPagingEnabled = true
     }
@@ -105,21 +111,54 @@ class HomeController: UIViewController {
         
         //Set x, y, width, height constraints for pageControl:
         pageControl.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        pageControl.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        pageControlBottomAnchor = pageControl.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        pageControlBottomAnchor?.isActive = true
         pageControl.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         pageControl.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         //Set x, y, width, height constraints for skipButton:
         skipButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        skipButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).isActive = true
+        skipButtonTopAnchor = skipButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16)
+        skipButtonTopAnchor?.isActive = true
         skipButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         skipButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //Set x, y, width, height constraints for nextButton:
         nextButton.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        nextButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).isActive = true
+        nextButtonTopAnchor = nextButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16)
+        nextButtonTopAnchor?.isActive = true
         nextButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        //In order to get the pageNumber use this calculation: targetContentOffset.pointee.x / view.frame.width
+        let pageNumber = targetContentOffset.pointee.x / view.frame.width
+        
+        pageControl.currentPage = Int(pageNumber)
+        
+        //Check if we 're on the last page:
+        if Int(pageNumber) == pages.count {
+            
+            //In order to hide pageControl on last page, I do this:
+            pageControlBottomAnchor?.constant = 40
+            skipButtonTopAnchor?.constant = -40
+            nextButtonTopAnchor?.constant = -40
+        } else {
+            
+            pageControlBottomAnchor?.constant = 0
+            skipButtonTopAnchor?.constant = 16
+            nextButtonTopAnchor?.constant = 16
+        }
+        
+        //In order to make our animation a little bit faster:
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            //Everytime change a constraint constant, need to call this function:
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
 }
 
