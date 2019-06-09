@@ -14,6 +14,7 @@
 		17E1EAAF22ACFF9200AEDF2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E1EAAD22ACFF9200AEDF2D /* LaunchScreen.storyboard */; };
 		17E1EAC722AD033500AEDF2D /* HomeControllerCollectionViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E1EAC622AD033500AEDF2D /* HomeControllerCollectionViewExtension.swift */; };
 		17E1EAC922AD036D00AEDF2D /* PageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E1EAC822AD036D00AEDF2D /* PageCell.swift */; };
+		17E1EACB22AD0B1B00AEDF2D /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E1EACA22AD0B1B00AEDF2D /* PageModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		17E1EAB022ACFF9200AEDF2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17E1EAC622AD033500AEDF2D /* HomeControllerCollectionViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeControllerCollectionViewExtension.swift; sourceTree = "<group>"; };
 		17E1EAC822AD036D00AEDF2D /* PageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCell.swift; sourceTree = "<group>"; };
+		17E1EACA22AD0B1B00AEDF2D /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 		17E1EAC422AD02C200AEDF2D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				17E1EACA22AD0B1B00AEDF2D /* PageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E1EAA722ACFF9100AEDF2D /* HomeController.swift in Sources */,
+				17E1EACB22AD0B1B00AEDF2D /* PageModel.swift in Sources */,
 				17E1EAA522ACFF9100AEDF2D /* AppDelegate.swift in Sources */,
 				17E1EAC922AD036D00AEDF2D /* PageCell.swift in Sources */,
 				17E1EAC722AD033500AEDF2D /* HomeControllerCollectionViewExtension.swift in Sources */,
