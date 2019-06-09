@@ -82,6 +82,8 @@ class HomeController: UIViewController {
         // Do any additional setup after loading the view.
         setupCollectionView()
         setupViews()
+        
+        observeKeyboardNotifications()
     }
     
     
@@ -90,7 +92,7 @@ class HomeController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(PageCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: loginCellIdentifier)
+        collectionView.register(LoginCell.self, forCellWithReuseIdentifier: loginCellIdentifier)
         //In order to every cell has its own page, and not to have two cells in one page:
         collectionView.isPagingEnabled = true
     }
@@ -129,6 +131,41 @@ class HomeController: UIViewController {
         nextButtonTopAnchor?.isActive = true
         nextButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
         nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    
+    private func observeKeyboardNotifications() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIWindow.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIWindow.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    @objc func keyboardWillAppear() {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            //Move our view a little bit up so to not the keyboard hide the loginButton:
+            self.view.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+    
+    
+    @objc func keyboardWillHide() {
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            
+            //Keyboard is hiding and our view goes back to normal:
+            self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        }, completion: nil)
+    }
+    
+    
+    //In order to hide keyboard when scrolling back:
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        view.endEditing(true)
     }
     
     

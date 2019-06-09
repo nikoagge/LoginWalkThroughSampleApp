@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		179E4FCA22AD4BC6007CA237 /* RGBColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E4FC922AD4BC6007CA237 /* RGBColorExtension.swift */; };
+		179E4FD122AD6ADA007CA237 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E4FD022AD6ADA007CA237 /* LoginCell.swift */; };
+		179E4FD322AD87A6007CA237 /* LeftPaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E4FD222AD87A6007CA237 /* LeftPaddedTextField.swift */; };
 		17E1EAA522ACFF9100AEDF2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E1EAA422ACFF9100AEDF2D /* AppDelegate.swift */; };
 		17E1EAA722ACFF9100AEDF2D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E1EAA622ACFF9100AEDF2D /* HomeController.swift */; };
 		17E1EAAA22ACFF9100AEDF2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E1EAA822ACFF9100AEDF2D /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		179E4FC922AD4BC6007CA237 /* RGBColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorExtension.swift; sourceTree = "<group>"; };
+		179E4FD022AD6ADA007CA237 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
+		179E4FD222AD87A6007CA237 /* LeftPaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftPaddedTextField.swift; sourceTree = "<group>"; };
 		17E1EAA122ACFF9100AEDF2D /* LoginWalkThroughSampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginWalkThroughSampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E1EAA422ACFF9100AEDF2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17E1EAA622ACFF9100AEDF2D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -43,6 +47,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		179E4FCB22AD6A94007CA237 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				179E4FCF22AD6AAE007CA237 /* Model */,
+				179E4FCE22AD6AA8007CA237 /* View */,
+				179E4FCD22AD6AA3007CA237 /* Controller */,
+				179E4FCC22AD6A9E007CA237 /* Service */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		179E4FCC22AD6A9E007CA237 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		179E4FCD22AD6AA3007CA237 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		179E4FCE22AD6AA8007CA237 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				179E4FD022AD6ADA007CA237 /* LoginCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		179E4FCF22AD6AAE007CA237 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		17E1EA9822ACFF9100AEDF2D = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +106,7 @@
 		17E1EAA322ACFF9100AEDF2D /* LoginWalkThroughSampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				179E4FCB22AD6A94007CA237 /* Login */,
 				17E1EAC022AD02B000AEDF2D /* Page */,
 				17E1EABB22AD025300AEDF2D /* Home */,
 				17E1EAB622AD01B700AEDF2D /* Global */,
@@ -103,6 +148,7 @@
 				17E1EAAB22ACFF9200AEDF2D /* Assets.xcassets */,
 				17E1EAAD22ACFF9200AEDF2D /* LaunchScreen.storyboard */,
 				17E1EAA822ACFF9100AEDF2D /* Main.storyboard */,
+				179E4FD222AD87A6007CA237 /* LeftPaddedTextField.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -268,6 +314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				17E1EAA722ACFF9100AEDF2D /* HomeController.swift in Sources */,
+				179E4FD122AD6ADA007CA237 /* LoginCell.swift in Sources */,
+				179E4FD322AD87A6007CA237 /* LeftPaddedTextField.swift in Sources */,
 				17E1EACB22AD0B1B00AEDF2D /* PageModel.swift in Sources */,
 				17E1EAA522ACFF9100AEDF2D /* AppDelegate.swift in Sources */,
 				17E1EAC922AD036D00AEDF2D /* PageCell.swift in Sources */,
