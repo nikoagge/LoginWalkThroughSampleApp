@@ -13,7 +13,7 @@ import UIKit
 class HomeController: UIViewController {
 
     
-    lazy var collectionView: UICollectionView = {
+    let collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -25,6 +25,37 @@ class HomeController: UIViewController {
         cv.translatesAutoresizingMaskIntoConstraints = false
         
         return cv
+    }()
+    
+    let pageControl: UIPageControl = {
+        
+        let pc = UIPageControl()
+        pc.pageIndicatorTintColor = .lightGray
+        pc.currentPageIndicatorTintColor = UIColor.rgb(ofRed: 247, ofGreen: 154, ofBlue: 27)
+        pc.numberOfPages = 3
+        pc.translatesAutoresizingMaskIntoConstraints = false
+        
+        return pc
+    }()
+    
+    let skipButton: UIButton = {
+        
+        let sb = UIButton(type: .system)
+        sb.setTitle("Skip", for: .normal)
+        sb.setTitleColor(UIColor.rgb(ofRed: 247, ofGreen: 154, ofBlue: 27), for: .normal)
+        sb.translatesAutoresizingMaskIntoConstraints = false
+        
+        return sb
+    }()
+    
+    let nextButton: UIButton = {
+        
+        let nb = UIButton(type: .system)
+        nb.setTitle("Next", for: .normal)
+        nb.setTitleColor(UIColor.rgb(ofRed: 247, ofGreen: 154, ofBlue: 27), for: .normal)
+        nb.translatesAutoresizingMaskIntoConstraints = false
+        
+        return nb
     }()
     
     let cellIdentifier = "cellId"
@@ -62,12 +93,33 @@ class HomeController: UIViewController {
     func setupViews() {
         
         view.addSubview(collectionView)
+        view.addSubview(pageControl)
+        view.addSubview(skipButton)
+        view.addSubview(nextButton)
         
         //Set x, y, width, height for collectionView:
         collectionView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        
+        //Set x, y, width, height constraints for pageControl:
+        pageControl.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        pageControl.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        pageControl.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        pageControl.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
+        //Set x, y, width, height constraints for skipButton:
+        skipButton.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        skipButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).isActive = true
+        skipButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        skipButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        //Set x, y, width, height constraints for nextButton:
+        nextButton.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        nextButton.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 16).isActive = true
+        nextButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 }
 
