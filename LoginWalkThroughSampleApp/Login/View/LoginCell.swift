@@ -48,7 +48,7 @@ class LoginCell: UICollectionViewCell {
         return ptf
     }()
     
-    let loginButton: UIButton = {
+    lazy var loginButton: UIButton = {
         
         let lb = UIButton(type: .system)
         lb.backgroundColor = .orange
@@ -56,8 +56,15 @@ class LoginCell: UICollectionViewCell {
         lb.setTitleColor(.white, for: .normal)
         lb.translatesAutoresizingMaskIntoConstraints = false
         
+        lb.addTarget(self, action: #selector(loginButtonTapped), for: .touchUpInside)
+        
         return lb
     }()
+    
+    var loginController: LoginController?
+    
+    //In order to avoid having a retain cycle, declare loginControllerDelegate as a weak var:
+    weak var loginControllerDelegate: LoginControllerDelegate?
     
     
     override init(frame: CGRect) {
@@ -107,5 +114,11 @@ class LoginCell: UICollectionViewCell {
         loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 16).isActive = true
         loginButton.rightAnchor.constraint(equalTo: passwordTextField.rightAnchor).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+    }
+    
+    
+    @objc func loginButtonTapped() {
+        
+        loginControllerDelegate?.finishLoggingIn()
     }
 }

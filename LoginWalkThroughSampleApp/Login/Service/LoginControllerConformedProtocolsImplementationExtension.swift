@@ -1,5 +1,5 @@
 //
-//  LoginControllerCollectionViewExtension.swift
+//  LoginControllerConformedProtocolsImplementationExtension.swift
 //  LoginWalkThroughSampleApp
 //
 //  Created by Nikolas on 09/06/2019.
@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 
-extension LoginController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension LoginController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, LoginControllerDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -24,7 +24,8 @@ extension LoginController: UICollectionViewDataSource, UICollectionViewDelegate,
         
         if indexPath.item == pages.count {
             
-            let loginCell = collectionView.dequeueReusableCell(withReuseIdentifier: loginCellIdentifier, for: indexPath)
+            let loginCell = collectionView.dequeueReusableCell(withReuseIdentifier: loginCellIdentifier, for: indexPath) as! LoginCell
+            loginCell.loginControllerDelegate = self
             
             return loginCell
         }
@@ -39,5 +40,17 @@ extension LoginController: UICollectionViewDataSource, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: view.frame.width, height: view.frame.height)
+    }
+    
+    
+    func finishLoggingIn() {
+        
+        //In order not only dismiss loginController, but also display homeController do this:
+        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+        
+        guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
+        mainNavigationController.viewControllers = [HomeController()]
+        
+        dismiss(animated: true, completion: nil)
     }
 }
