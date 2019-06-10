@@ -38,22 +38,26 @@ class HomeController: UIViewController {
         return pc
     }()
     
-    let skipButton: UIButton = {
+    lazy var skipButton: UIButton = {
         
         let sb = UIButton(type: .system)
         sb.setTitle("Skip", for: .normal)
         sb.setTitleColor(UIColor.rgb(ofRed: 247, ofGreen: 154, ofBlue: 27), for: .normal)
         sb.translatesAutoresizingMaskIntoConstraints = false
         
+        sb.addTarget(self, action: #selector(skipButtonTapped), for: .touchUpInside)
+        
         return sb
     }()
     
-    let nextButton: UIButton = {
+    lazy var nextButton: UIButton = {
         
         let nb = UIButton(type: .system)
         nb.setTitle("Next", for: .normal)
         nb.setTitleColor(UIColor.rgb(ofRed: 247, ofGreen: 154, ofBlue: 27), for: .normal)
         nb.translatesAutoresizingMaskIntoConstraints = false
+        
+        nb.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
         
         return nb
     }()
@@ -142,6 +146,14 @@ class HomeController: UIViewController {
     }
     
     
+    private func moveComponentsConstraintsOffScreen() {
+        
+        pageControlBottomAnchor?.constant = 40
+        skipButtonTopAnchor?.constant = -40
+        nextButtonTopAnchor?.constant = -40
+    }
+    
+    
     @objc func keyboardWillAppear() {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
@@ -162,6 +174,38 @@ class HomeController: UIViewController {
     }
     
     
+    @objc func nextButtonTapped() {
+        
+        //If we 're on the last page, do nothing:
+        if pageControl.currentPage == pages.count {
+            
+            return
+        }
+        
+        //If we 're on the penultimate page, and is to go to the last page:
+        if pageControl.currentPage == pages.count - 1 {
+            
+            moveComponentsConstraintsOffScreen()
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+        let indexPath = IndexPath(item: pageControl.currentPage + 1, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        pageControl.currentPage += 1
+    }
+    
+    
+    @objc func skipButtonTapped() {
+        
+        pageControl.currentPage = pages.count - 1
+        
+        nextButtonTapped()
+    }
+    
+    
     //In order to hide keyboard when scrolling back:
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
@@ -179,10 +223,8 @@ class HomeController: UIViewController {
         //Check if we 're on the last page:
         if Int(pageNumber) == pages.count {
             
-            //In order to hide pageControl on last page, I do this:
-            pageControlBottomAnchor?.constant = 40
-            skipButtonTopAnchor?.constant = -40
-            nextButtonTopAnchor?.constant = -40
+            //In order to hide pageControl and the two buttons on the top on last page, I do this:
+            moveComponentsConstraintsOffScreen()
         } else {
             
             pageControlBottomAnchor?.constant = 0
