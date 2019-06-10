@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		177CA76822AE9E43003F53EB /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177CA76722AE9E43003F53EB /* HomeController.swift */; };
 		177CA76A22AEB584003F53EB /* LoginControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177CA76922AEB584003F53EB /* LoginControllerDelegate.swift */; };
+		177CA76C22AEC005003F53EB /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177CA76B22AEC005003F53EB /* UserDefaultsExtension.swift */; };
 		178385D722AE636900C6448D /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178385D622AE636900C6448D /* MainNavigationController.swift */; };
 		179E4FCA22AD4BC6007CA237 /* RGBColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E4FC922AD4BC6007CA237 /* RGBColorExtension.swift */; };
 		179E4FD122AD6ADA007CA237 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179E4FD022AD6ADA007CA237 /* LoginCell.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		177CA76722AE9E43003F53EB /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		177CA76922AEB584003F53EB /* LoginControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginControllerDelegate.swift; sourceTree = "<group>"; };
+		177CA76B22AEC005003F53EB /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
 		178385D622AE636900C6448D /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		179E4FC922AD4BC6007CA237 /* RGBColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RGBColorExtension.swift; sourceTree = "<group>"; };
 		179E4FD022AD6ADA007CA237 /* LoginCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				17E1EAB022ACFF9200AEDF2D /* Info.plist */,
 				179E4FC922AD4BC6007CA237 /* RGBColorExtension.swift */,
+				177CA76B22AEC005003F53EB /* UserDefaultsExtension.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				177CA76A22AEB584003F53EB /* LoginControllerDelegate.swift in Sources */,
 				17E1EAC922AD036D00AEDF2D /* PageCell.swift in Sources */,
 				17E1EAC722AD033500AEDF2D /* LoginControllerConformedProtocolsImplementationExtension.swift in Sources */,
+				177CA76C22AEC005003F53EB /* UserDefaultsExtension.swift in Sources */,
 				179E4FCA22AD4BC6007CA237 /* RGBColorExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

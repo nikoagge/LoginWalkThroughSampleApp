@@ -51,6 +51,8 @@ extension LoginController: UICollectionViewDataSource, UICollectionViewDelegate,
         guard let mainNavigationController = rootViewController as? MainNavigationController else { return }
         mainNavigationController.viewControllers = [HomeController()]
         
+        UserDefaults.standard.setIsUserLoggedIn(forValue: true)
+        
         dismiss(animated: true, completion: nil)
     }
 }

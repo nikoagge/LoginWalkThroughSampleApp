@@ -27,6 +27,7 @@ class HomeController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setupViews()
+        setupNavigationItems()
     }
     
     
@@ -39,5 +40,21 @@ class HomeController: UIViewController {
         imageView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 64).isActive = true
         imageView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         imageView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+    }
+    
+    
+    func setupNavigationItems() {
+        
+        navigationItem.title = "User has logged in"
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out", style: .plain, target: self, action: #selector(signOutTapped))
+    }
+    
+    
+    @objc func signOutTapped() {
+        
+        UserDefaults.standard.setIsUserLoggedIn(forValue: false)
+       
+        let loginController = LoginController()
+        present(loginController, animated: true, completion: nil)
     }
 }

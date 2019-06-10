@@ -32,14 +32,14 @@ class MainNavigationController: UINavigationController {
         } else {
             
             //In order not to get this error: <LoginWalkThroughSampleApp.MainNavigationController: 0x7fd4f502b000> whose view is not in the window hierarchy!, write this:
-            perform(#selector(presentLoginController), with: nil, afterDelay: 0.01)
+            perform(#selector(presentLoginController), with: nil, afterDelay: 0.04)
         }
     }
     
     
     fileprivate func isUserLoggedIn() -> Bool {
         
-        return false
+        return UserDefaults.standard.isUserLoggedIn()
     }
     
     
