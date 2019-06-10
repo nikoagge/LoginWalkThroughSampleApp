@@ -1,5 +1,5 @@
 //
-//  HomeControllerCollectionViewExtension.swift
+//  LoginControllerCollectionViewExtension.swift
 //  LoginWalkThroughSampleApp
 //
 //  Created by Nikolas on 09/06/2019.
@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 
-extension HomeController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension LoginController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
