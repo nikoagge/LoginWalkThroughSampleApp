@@ -50,7 +50,12 @@ class PageCell: UICollectionViewCell {
         //Best practice to set cell's pageModel properties inside here:
         didSet {
             
-            guard let safelyUnwrappedPage = page else { return }
+            guard var safelyUnwrappedPage = page else { return }
+            
+            if UIDevice.current.orientation.isLandscape {
+                
+                safelyUnwrappedPage.imageName += "_landscape"
+            }
             
             imageView.image = UIImage(named: safelyUnwrappedPage.imageName)
             

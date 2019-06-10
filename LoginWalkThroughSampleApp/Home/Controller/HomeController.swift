@@ -158,8 +158,10 @@ class HomeController: UIViewController {
         
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             
+            let y: CGFloat = UIDevice.current.orientation.isLandscape ? -100 : -50
+            
             //Move our view a little bit up so to not the keyboard hide the loginButton:
-            self.view.frame = CGRect(x: 0, y: -50, width: self.view.frame.width, height: self.view.frame.height)
+            self.view.frame = CGRect(x: 0, y: y, width: self.view.frame.width, height: self.view.frame.height)
         }, completion: nil)
     }
     
@@ -238,6 +240,22 @@ class HomeController: UIViewController {
             //Everytime change a constraint constant, need to call this function:
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+    
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        //When the device rotates in order to the constraints have effect, write following line:
+        collectionView.collectionViewLayout.invalidateLayout()
+        
+        //Also write the following lines so to have only one page in the center when the device rotates:
+        let indexPath = IndexPath(item: pageControl.currentPage, section: 0)
+        //Use DispatchQueue so to scroll to indexPath after the device rotates:
+        DispatchQueue.main.async {
+            
+            self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            self.collectionView.reloadData()
+        }
     }
 }
 

@@ -15,5 +15,5 @@ struct PageModel {
     
     let title: String
     let message: String
-    let imageName: String
+    var imageName: String
 }

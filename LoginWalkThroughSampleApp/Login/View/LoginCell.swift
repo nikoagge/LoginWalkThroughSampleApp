@@ -83,7 +83,10 @@ class LoginCell: UICollectionViewCell {
         
         //Set x, y, width, height constraints for logoImageView:
         logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -220).isActive = true
+        
+        let distanceFromCenterYAnchor: CGFloat = UIDevice.current.orientation.isLandscape ? -130 : -220
+        
+        logoImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: distanceFromCenterYAnchor).isActive = true
         logoImageView.widthAnchor.constraint(equalToConstant: 160).isActive = true
         logoImageView.heightAnchor.constraint(equalToConstant: 160).isActive = true
         
